@@ -5,6 +5,7 @@ var review = require('../models/review');
 var authConfig = require('../config/appConfig');
 var jwt = require('../node_modules/jsonwebtoken');
 var propService = require("../services/propertyService");
+var verifyToken = require('../auth/verifyToken');
 
 router.post("/",function (req, res, next) {
     
@@ -83,7 +84,7 @@ router.put("/getData/:id", function (req, res, next) {
         });  
 });
 
-router.post("/addReview", function (req, res, next) {
+router.post("/addReview", verifyToken, function (req, res, next) {
     let localreview = new review
     ({
         propertyId : req.body.propertyId,

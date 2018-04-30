@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var propRouter = require('./routes/property');
+var taskRouter = require('./routes/task');
 var scrapRouter = require('./routes/scrap');
 
 var app = express();
@@ -30,6 +31,7 @@ app.listen(5400)
 //app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/properties', propRouter);
+app.use('/task', taskRouter);
 app.use('/scrap', scrapRouter);
 
 // to accept cross domain reuests

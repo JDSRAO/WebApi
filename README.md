@@ -1,5 +1,5 @@
 # Node.js Web API 
-### Web API server teamplate 
+### Web API server template 
 
 ### Features
 * Authentication API

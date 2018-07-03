@@ -8,10 +8,10 @@ var Task = new Schema
     taskId : Number,
     title : String,
     description : String,
-    status : String,
-    createdDateTime : Date,
+    status : { type : String, default : 'Paused'},
+    createdDateTime : {type : Date, default : Date.now},
     lastUpdatedDateTime : Date,
-    totalTime : Number,
+    time : { type : Number, default : 0}, 
     targetDate : Date
 });
 

@@ -13,7 +13,6 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/add", function (req, res, next) {
-    console.log( req.body);
     let localTask = new Task ({
         "title" : req.body.title,
         "description" : req.body.description,
@@ -23,13 +22,30 @@ router.post("/add", function (req, res, next) {
         "totalTime" : 0,
         "targetDate" : new Date(req.body.targetDate)
     });
-    console.log(localTask);
 
     taskMgmtService.addTask(localTask).then(function(data){
         res.status(200).json({'data' : data });
     }, function (err) {
         res.status(500).json({'data' : err});
     });
+});
+
+router.post("/start", function (req, res, next) {
+    let taskId = req.body.taskId;
+    taskMgmtService.startTask(taskId).then(function (data) {
+        res.status(200).json({'data' : data});
+    }), function (err) {
+        res.status(500).json({'data' : err});
+    };
+});
+
+router.post("/pause", function (req, res, next) {
+    let taskId = req.body.taskId;
+    taskMgmtService.pauseTask(taskId).then(function (data) {
+        res.status(200).json({'data' : data});
+    }), function (err) {
+        res.status(500).json({'data' : err});
+    };
 });
 
 

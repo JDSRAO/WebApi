@@ -11,6 +11,7 @@ var authRouter = require('./routes/auth');
 var propRouter = require('./routes/property');
 var taskRouter = require('./routes/task');
 var scrapRouter = require('./routes/scrap');
+let taskMgmtRouter = require('./routes/taskMgmt');
 
 var app = express();
 
@@ -32,12 +33,14 @@ app.listen(5400)
 app.use('/auth', authRouter);
 app.use('/properties', propRouter);
 app.use('/task', taskRouter);
-app.use('/scrap', scrapRouter);
+app.use('/scrap', scrapRouter); 
+app.use('/taskMgmt', taskMgmtRouter); 
 
 // to accept cross domain reuests
 app.use(function (req, res, next) 
 {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4100');
+  //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4100');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   //res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');

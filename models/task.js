@@ -11,7 +11,8 @@ var Task = new Schema
     status : String,
     createdDateTime : Date,
     lastUpdatedDateTime : Date,
-    totalTime : Number
+    totalTime : Number,
+    targetDate : Date
 });
 
 Task.plugin(autoIncrement.plugin, {model : 'Task', field : 'taskId', startAt : 1});

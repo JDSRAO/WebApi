@@ -5,7 +5,7 @@ const taskMgmtService = require('../services/taskMgmtService');
 let Task = require('../models/task');
 
 router.get("/", function (req, res, next) {
-    taskMgmtService.getTasks().then(function(data){
+    taskMgmtService.getTasks().then(function(data) {
         res.status(200).json({'data' : data });
     }, function (err) {
         res.status(500).json({'data' : err});
@@ -34,19 +34,46 @@ router.post("/start", function (req, res, next) {
     let taskId = req.body.taskId;
     taskMgmtService.startTask(taskId).then(function (data) {
         res.status(200).json({'data' : data});
-    }), function (err) {
+    }, function (err) {
         res.status(500).json({'data' : err});
-    };
+    });
 });
 
 router.post("/pause", function (req, res, next) {
     let taskId = req.body.taskId;
     taskMgmtService.pauseTask(taskId).then(function (data) {
         res.status(200).json({'data' : data});
-    }), function (err) {
+    }, function (err) {
         res.status(500).json({'data' : err});
-    };
+    });
 });
+
+router.post("/task", function (req, res, next) {
+   let taskId = req.body.taskId;
+   taskMgmtService.getTask(taskId).then(function (data) {   
+       res.status(200).json({'data' : data});
+   }, function (err) {
+       res.status(500).json({'data': err});
+   });
+});
+
+router.post("/close", function (req, res, next) {
+    let taskId = req.body.taskId;
+    taskMgmtService.closeTask(taskId).then(function (data) {   
+       res.status(200).json({'data' : data});
+    }, function (err) {
+       res.status(500).json({'data': err});
+    }); 
+ });
+
+ router.post("/delete", function (req, res, next) {
+    let taskId = req.body.taskId;
+    taskMgmtService.deleteTask(taskId).then(function (data) {   
+       res.status(200).json({'data' : data});
+    }, function (err) {
+       res.status(500).json({'data': err});
+    }); 
+ });
 
 
 module.exports = router;

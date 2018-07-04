@@ -75,5 +75,13 @@ router.post("/close", function (req, res, next) {
     }); 
  });
 
+ router.get("/stats", function (req, res, next) {
+    taskMgmtService.getStats().then(function (count) {
+        res.status(200).json({'data' : count});
+    }, function (err) {
+        res.status(500).json({'data' : err});
+    }); 
+ });
+
 
 module.exports = router;

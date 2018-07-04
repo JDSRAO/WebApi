@@ -28,7 +28,7 @@ service.addTask = function (task) {
             reject(err);
         }
         else {
-           resolve(result);
+           resolve();
         }
       });
   });    
@@ -49,12 +49,12 @@ service.startTask = function (taskId) {
                 reject(err);
                }
                else {   
-                resolve(data);
+                resolve();
                }
 
             });
         }
-        
+
     });
   });
     
@@ -78,7 +78,7 @@ service.pauseTask = function (taskId) {
                 reject(err);
               }
               else {   
-                resolve(data);
+                resolve();
               }
 
             });
@@ -98,7 +98,7 @@ service.pauseTask = function (taskId) {
                 reject(err);
             }
             else {
-                resolve(data);
+                resolve();
             } 
         });
       });
@@ -127,10 +127,26 @@ service.pauseTask = function (taskId) {
                 reject(err);
             }
             else {
-                resolve(data);
+                resolve();
             }
         });
     });  
   };
+
+  service.getStats = function () {
+      return new Promise(function (resolve, reject) {
+          let closedTaskQuery =  { 'status' : 'Closed' };
+          Task.find(closedTaskQuery).count(function (err, data) {
+            if(err) {  
+                reject(err);
+            }
+            else {
+                let stats = { 'closed' : data }  
+                resolve(stats);
+            }
+
+          });
+      });
+  }
 
 module.exports = service;

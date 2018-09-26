@@ -83,5 +83,12 @@ router.post("/close", function (req, res, next) {
     }); 
  });
 
+ router.post("/update", function (req, res, next) {
+    taskMgmtService.updateTask(req.body).then(function (data) {
+        res.status(200).json({'data' : data});
+    }, function (err) {
+        res.status(500).json({'data' : err});
+    });
+ });
 
 module.exports = router;

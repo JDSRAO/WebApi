@@ -147,6 +147,20 @@ service.pauseTask = function (taskId) {
 
           });
       });
+  };
+
+  service.updateTask = function (taskDetails) {
+      return new Promise(function (resolve, reject) {
+        let query = {"taskId" : taskDetails.taskId};
+          Task.updateOne(query, taskDetails, function (err, data) {
+             if(err) {
+                 reject(err);
+             }
+             else {
+                 resolve(data);
+             } 
+          });
+      });
   }
 
 module.exports = service;

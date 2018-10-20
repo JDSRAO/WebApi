@@ -2,7 +2,9 @@ var process = require("process");
 var mongoose = require("mongoose");
 var appConfig = require("./appConfig");
 
-var dbURI = appConfig.mongo.url;
+//var dbURI = appConfig.mongo.url;
+//dbURI = encodeURIComponent(dbURI);
+var dbURI = appConfig.mongo.url.prefix + encodeURIComponent(appConfig.mongo.url.password) + appConfig.mongo.url.host;
 var dbOptions = appConfig.mongo.options;
 
 mongoose.connect(dbURI, dbOptions);
